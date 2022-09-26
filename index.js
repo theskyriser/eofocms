@@ -31,13 +31,6 @@ app.use('/payroll', payrollRoutes)
 app.use('/financials', financialRoutes)
 app.use('/homework', homeworkRoutes)
 
-app.get('/', (req, res) => {
-    res.send('APP IS RUNNING')
-})
-
-app.get('/favico.ico', (req, res) => {
-    res.send('/favico.ico')
-})
 
 
 
