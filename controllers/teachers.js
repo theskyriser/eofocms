@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import TeacherPost from "../models/teacher.js"
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import AdminPost from "../models/admin.js";
 
 export const getTeachers = async (req, res) => {

@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import AdminPost from '../models/admin.js'
 import TeacherPost from '../models/teacher.js'
