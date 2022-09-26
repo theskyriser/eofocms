@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
 })
 
 const CONNECTION_URL = "mongodb+srv://eOfe:valery01@eofedb.uqyzm.mongodb.net/?retryWrites=true&w=majority"
-const PORT = process.env.PORT || '8080'
+const PORT = process.env.PORT || '5000'
 
 
 
