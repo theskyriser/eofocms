@@ -4,9 +4,6 @@
   "description": "",
   "main": "index.js",
   "type": "module",
-  "engines": {
-    "node": "12.11.1"
-  },
   "scripts": {
     "start": "node ./bin/www"
   },
