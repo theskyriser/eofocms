@@ -7,9 +7,9 @@
   "engines": {
     "node": "12.11.1"
     },
-  "scripts": {
-    "start": "node index.js"
-    },
+    "scripts":{
+      "start": "node ./bin/www"
+  },
     "proxy": "http://localhost:8000",
   "keywords": [],
   "author": "",
