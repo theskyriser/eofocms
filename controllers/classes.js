@@ -69,6 +69,8 @@ export const getClassesBySearch = async (req, res) => {
 }
 
 export const createClasses = async (req, res) => {
+
+    console.log(req.body)
     
     const classes = req.body;
     const numberOfStudents = classes.students.length
@@ -120,7 +122,7 @@ export const createClasses = async (req, res) => {
     }
 
     
-
+    console.log(sessions)
     try {
         const teacherHourlyRate = await TeacherPost.findById(teacherId, {hourlyRate: 1, _id: 0})
       const newClassId = mongoose.Types.ObjectId();

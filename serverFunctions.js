@@ -67,7 +67,7 @@ export function getMonthsBetween(date1,date2,roundUpFractionalMonths)
 
     var monthCorrection=0;
     //If roundUpFractionalMonths is true, check if an extra month needs to be added from rounding up.
-    //The difference is done by ceiling (round up), e.g. 3 months and 1 day will be 4 months.
+    //The difference is done by ceiling (round up),  3 months and 1 day will be 4 months.
     if(roundUpFractionalMonths===true && daysDifference>0)
     {
         monthCorrection=1;
