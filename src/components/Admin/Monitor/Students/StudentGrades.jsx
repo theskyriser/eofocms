@@ -1,12 +1,4 @@
 import React, { useState, useEffect } from "react";
-import {
-  GridComponent,
-  ColumnsDirective,
-  ColumnDirective,
-  Inject,
-  setStyleAndAttributes,
-} from "@syncfusion/ej2-react-grids";
-import { studentGrid } from "../../../../data/gridHeaders";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
 import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
@@ -132,14 +124,26 @@ const StudentGrades = ({
       >
         <div className="w-screen px-5 z-10">
           <div className="w-full bg-white rounded-lg shadow-lg p-4">
-            <div className="mb-5 flex justify-between items-center">
-              <h1 className="text-4xl font-bold">
-                {" "}
-                {`${student.firstName} ${student.lastName}'s Grades`}{" "}
-              </h1>
+            <div className="mb-5 flex justify-between items-center flex-col md:flex-row">
+              <div className="flex flex-row">
+                <h1 className="text-4xl font-bold">
+                  {" "}
+                  {`${student.firstName} ${student.lastName}'s Grades`}{" "}
+                </h1>
+
+                <TooltipComponent content="Menu" position="BottomCenter">
+                  <button
+                    type="button"
+                    className="text-xl rounded-full p-3 hover:bg-light-gray mt-4 block"
+                    onClick={() => setOpenGrades((prev) => !prev)}
+                  >
+                    <MdOutlineCancel />
+                  </button>
+                </TooltipComponent>
+              </div>
 
               <button
-                className="py-2 px-4 rounded-md flex justify-between hover:shadow-md"
+                className="py-2 px-4 rounded-md flex justify-between hover:shadow-md my-3"
                 onClick={() => setAddNew(true)}
                 style={{ backgroundColor: currentColor, color: "white" }}
               >
@@ -159,16 +163,6 @@ const StudentGrades = ({
                   <MdInfoOutline />
                 </div>
               </button>
-
-              <TooltipComponent content="Menu" position="BottomCenter">
-                <button
-                  type="button"
-                  className="text-xl rounded-full p-3 hover:bg-light-gray mt-4 block"
-                  onClick={() => setOpenGrades((prev) => !prev)}
-                >
-                  <MdOutlineCancel />
-                </button>
-              </TooltipComponent>
             </div>
 
             <hr className="border-1 border-color mb-4" />
@@ -196,7 +190,7 @@ const StudentGrades = ({
                     Select Previous Grades{" "}
                   </h1>
 
-                  <div className="flex items-center bg-main-bg shadow-sm p-2 rounded-md">
+                  <div className="flex items-center bg-main-bg shadow-sm p-2 rounded-md w-full md:flex-row flex-col">
                     <h2 className="mr-5"> Search by Date: </h2>
 
                     <div className="mr-5 mt-1">

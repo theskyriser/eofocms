@@ -26,12 +26,9 @@ import {
   AccumulationDataLabel,
   AccumulationLegend,
 } from "@syncfusion/ej2-react-charts";
-import { classGrid, overviewGrid } from "../../../data/gridHeaders";
+import { overviewGrid } from "../../../data/gridHeaders";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getAdminTodayOverview,
-  getTeacherTodayOverview,
-} from "../../../redux/actions/financials";
+import { getTeacherTodayOverview } from "../../../redux/actions/financials";
 
 const TeacherOverview = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -60,13 +57,13 @@ const TeacherOverview = () => {
   }, []);
 
   return (
-    <div className="p-4">
+    <div className="p-4 md:mt-0 mt-10">
       <div className=" bg-main-bg rounded-lg shadow-lg p-4">
         <div className="flex flex-col justify-between mb-5">
           <h1 className="text-3xl font-semibold"> Overview - Today </h1>
         </div>
 
-        <div className="grid grid-cols-4 gap-10">
+        <div className="md:grid grid-cols-4 gap-10 flex flex-col">
           <div className="shadow-lg bg-blue-400 p-8 rounded-sm">
             <div className="flex justify-between">
               <h2 className="text-4xl font-bold mb-4">
@@ -124,7 +121,7 @@ const TeacherOverview = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-10 mt-10 gap-10">
+        <div className="md:grid grid-cols-10 mt-10 gap-10 flex-col flex">
           <div className="col-start-1 col-span-5">
             <h2 className="mb-2 font-medium text-lg"> Today's Classes </h2>
             <GridComponent

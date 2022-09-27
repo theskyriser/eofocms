@@ -1,17 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import profile from "../../../data/profile.svg";
-import {
-  MdOutlinePersonAddAlt,
-  MdInfoOutline,
-  MdOutlineModeEdit,
-  MdOutlineGrade,
-  MdOutlineAssignment,
-  MdTextSnippet,
-  MdFolder,
-  MdAccountCircle,
-} from "react-icons/md";
-import { getAdmins } from "../../../redux/actions/admins";
 import TeacherDetails from "../../../components/Teacher/Dashboard/TeacherDetails";
 import { getTeachers } from "../../../redux/actions/teachers";
 
@@ -30,14 +19,14 @@ const TeacherProfile = () => {
 
   return (
     <div className="p-4">
-      <div className=" bg-main-bg rounded-lg shadow-lg p-4">
-        <div className="flex ">
+      <div className=" bg-main-bg rounded-lg shadow-lg p-4 flex flex-col items-center md:items-left">
+        <div className="flex flex-col md:flex-row items-center md:items-start">
           <div className="text-center flex flex-col justify-between m-7 ">
             <div className="w-full ">
               {user?.result?.image ? (
                 <img
                   src={user?.result?.image}
-                  className="rounded-full h-48 w-48 shadow-lg border-4 border-color"
+                  className="rounded-full h-48 w-48 shadow-lg"
                 />
               ) : (
                 <img src={profile} />
@@ -45,7 +34,7 @@ const TeacherProfile = () => {
             </div>
           </div>
 
-          <div className=" p-10 ml-14">
+          <div className=" p-10 md:ml-14">
             <h1 className="text-4xl font-bold"> {thisTeacher?.firstName} </h1>
 
             <h2 className="mt-6 text-xl"> {thisTeacher?.email} </h2>

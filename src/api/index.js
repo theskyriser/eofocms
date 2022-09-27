@@ -1,6 +1,9 @@
 import axios from 'axios'
 
-const API = axios.create({ baseURL: 'https://englishfromenglandcms.herokuapp.com'})
+const local = ''
+const heroku = ''
+
+const API = axios.create({ baseURL: local})
 
 API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {

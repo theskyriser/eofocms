@@ -2,20 +2,9 @@ import React, { useState, useEffect } from "react";
 import {
   GridComponent,
   ColumnsDirective,
-  Resize,
-  Sort,
-  ContextMenu,
-  Filter,
-  Page,
-  ExcelExport,
-  PdfExport,
   Edit,
   Inject,
   ColumnDirective,
-  fltrPrevent,
-  dataReady,
-  rowDataBound,
-  rowDeselected,
 } from "@syncfusion/ej2-react-grids";
 import {
   languageLevels,
@@ -38,17 +27,14 @@ import AddStudents from "./ClassData/AddStudents";
 import { useDispatch, useSelector } from "react-redux";
 import AddTeachers from "./ClassData/AddTeachers";
 import AddCo from "./ClassData/AddCo";
-import {
-  createClass,
-  getClasses,
-  updateClass,
-} from "../../../../redux/actions/classes";
+import { createClass, updateClass } from "../../../../redux/actions/classes";
 
 const AddClass = ({
   setActiveAddClass,
   activeAddClass,
   currentEdit,
   selectedClass,
+  currentColor,
 }) => {
   const dispatch = useDispatch();
   const [classData, setClassData] = useState({
@@ -92,8 +78,6 @@ const AddClass = ({
 
   let grid;
 
-  console.log(thisClass?.sessionsGrid);
-
   useEffect(() => {
     if (thisClass)
       setClassData({ ...thisClass, sessions: thisClass.sessionsGrid });
@@ -118,7 +102,6 @@ const AddClass = ({
       for (let i = 0; i < session.length; i++) {
         if (!session[i].hasOwnProperty(sessionData.currentDay)) {
           session[i] = { ...session[i], [sessionData.currentDay]: toPush };
-
           break;
         }
 
@@ -273,12 +256,12 @@ const AddClass = ({
         variants={dropIn}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="px-5 z-10">
-          <div className="w-full bg-white rounded-lg shadow-lg p-4">
-            <div className="mb-5 flex justify-between items-center">
+        <div className="px-5 z-10 md:mt-0 mt-96">
+          <div className="w-screen bg-white rounded-lg shadow-lg p-4">
+            <div className="mb-5 flex justify-between items-center md:mt-0 mt-40">
               <h1 className="text-2xl">
                 {" "}
-                {`${currentEdit ? "Edit" : "Add New"}  Teacher`}{" "}
+                {`${currentEdit ? "Edit" : "Add New"}  Class`}{" "}
               </h1>
 
               <TooltipComponent content="Menu" position="BottomCenter">
@@ -295,10 +278,11 @@ const AddClass = ({
             </div>
 
             <form onSubmit={(e) => handleSubmit(e)}>
-              <div className="grid grid-cols-4 gap-3">
+              <div className="md:grid grid-cols-4 gap-3 flex flex-col">
                 <div className="col-span-2">
                   <label> Client </label>
                   <input
+                    style={{ backgroundColor: `${currentColor}25` }}
                     value={classData.client}
                     onChange={(e) => {
                       setClassData({ ...classData, client: e.target.value });
@@ -311,6 +295,7 @@ const AddClass = ({
                 <div className="col-start-3 col-span-2">
                   <label> Group </label>
                   <input
+                    style={{ backgroundColor: `${currentColor}25` }}
                     value={classData.group}
                     onChange={(e) => {
                       setClassData({ ...classData, group: e.target.value });
@@ -323,6 +308,7 @@ const AddClass = ({
                 <div className="relative col-start-1 col-span-1">
                   <label> Level </label>
                   <select
+                    style={{ backgroundColor: `${currentColor}25` }}
                     defaultValue={currentEdit ? classData.value : "default"}
                     onChange={(e) => {
                       setClassData({ ...classData, level: e.target.value });
@@ -353,6 +339,7 @@ const AddClass = ({
                 <div className="col-start-2 col-span-1">
                   <label> Cost Per Session </label>
                   <input
+                    style={{ backgroundColor: `${currentColor}25` }}
                     value={classData.costPerSession}
                     onChange={(e) => {
                       setClassData({
@@ -365,7 +352,10 @@ const AddClass = ({
                   />
                 </div>
 
-                <div className=" col-start-3 col-span-1">
+                <div
+                  className=" col-start-3 col-span-1"
+                  style={{ backgroundColor: `${currentColor}25` }}
+                >
                   <label> Start Date </label>
                   <DatePickerComponent
                     id="datepickerStart"
@@ -376,7 +366,10 @@ const AddClass = ({
                   />
                 </div>
 
-                <div className=" col-start-4 col-span-1">
+                <div
+                  className=" col-start-4 col-span-1"
+                  style={{ backgroundColor: `${currentColor}25` }}
+                >
                   <label> End Date </label>
                   <DatePickerComponent
                     id="datepickerEnd"
@@ -388,87 +381,59 @@ const AddClass = ({
                 </div>
 
                 <div className="col-start-1 col-span-1 flex justify-evenly flex-col">
-                  <button
-                    type="button"
-                    onClick={() => setAddSession((prev) => !prev)}
-                    class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
-                  >
-                    <svg
-                      class="fill-current w-4 h-4 mr-2"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
+                  <div className="col-start-1 col-span-1 flex justify-evenly flex-col mt-10">
+                    <button
+                      onClick={() => setAddSession(true)}
+                      type="button"
+                      class="py-2 px-4 rounded-md flex justify-between w-full hover:shadow-md"
+                      style={{ backgroundColor: currentColor, color: "white" }}
                     >
-                      <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
-                    </svg>
-                    <span>Add Sessions</span>
-                  </button>
+                      <p className="font-semibold">Add Sessions</p>
+                    </button>
+                  </div>
 
-                  <button
-                    type="button"
-                    onClick={() => setAddStudents((prev) => !prev)}
-                    class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-10"
-                  >
-                    <svg
-                      class="fill-current w-4 h-4 mr-2"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
+                  <div className="col-start-1 col-span-1 flex justify-evenly flex-col mt-10">
+                    <button
+                      type="button"
+                      onClick={() => setAddStudents(true)}
+                      class="py-2 px-4 rounded-md flex justify-between w-full hover:shadow-md"
+                      style={{ backgroundColor: currentColor, color: "white" }}
                     >
-                      <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
-                    </svg>
-                    <span>Add Students</span>
-                  </button>
+                      <p className="font-semibold">Add Students</p>
+                    </button>
+                  </div>
 
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setAddTeacher((prev) => !prev);
-                    }}
-                    class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-10"
-                  >
-                    <svg
-                      class="fill-current w-4 h-4 mr-2"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
+                  <div className="col-start-1 col-span-1 flex justify-evenly flex-col mt-10">
+                    <button
+                      type="button"
+                      onClick={() => setAddTeacher(true)}
+                      class="py-2 px-4 rounded-md flex justify-between w-full hover:shadow-md"
+                      style={{ backgroundColor: currentColor, color: "white" }}
                     >
-                      <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
-                    </svg>
-                    <span>Add Teacher</span>
-                  </button>
+                      <p className="font-semibold">Add Teacher</p>
+                    </button>
+                  </div>
 
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setAddCo((prev) => !prev);
-                    }}
-                    class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-10"
-                  >
-                    <svg
-                      class="fill-current w-4 h-4 mr-2"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
+                  <div className="col-start-1 col-span-1 flex justify-evenly flex-col mt-10">
+                    <button
+                      type="button"
+                      onClick={() => setAddCo(true)}
+                      class="py-2 px-4 rounded-md flex justify-between w-full hover:shadow-md"
+                      style={{ backgroundColor: currentColor, color: "white" }}
                     >
-                      <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
-                    </svg>
-                    <span>Add Co-Ordinator</span>
-                  </button>
-
-                  <button
-                    type="submit"
-                    class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-10"
-                  >
-                    <svg
-                      class="fill-current w-4 h-4 mr-2"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
-                    </svg>
-                    <span>CREATE CLASS</span>
-                  </button>
+                      <p className="font-semibold">Add Co-Ordinator</p>
+                    </button>
+                  </div>
                 </div>
 
-                <div className="col-start-2 col-span-3 bg-gray-300 rounded-lg shadow-lg p-4">
-                  <div className="flex justify-between">
+                <div
+                  className="col-start-2 col-span-3  rounded-lg shadow-lg p-4"
+                  style={{ backgroundColor: `${currentColor}25` }}
+                >
+                  <div
+                    className="flex justify-between"
+                    style={{ backgroundColor: `${currentColor}25` }}
+                  >
                     <div>
                       <h1 className="font-semibold"> CLASS SCHEDULE </h1>
                     </div>
@@ -511,20 +476,13 @@ const AddClass = ({
                       <Inject services={[Edit]} />
                     </GridComponent>
                   </div>
-                  <div className="flex flex-row-reverse">
+                  <div className="flex flex-row-reverse mt-3 w-2/3 md:w-1/3">
                     <button
-                      type="button"
-                      class="bg-gray-200 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-2"
                       onClick={() => handleWeekDeletion()}
+                      class="py-2 px-4 rounded-md flex justify-between w-full hover:shadow-md"
+                      style={{ backgroundColor: currentColor, color: "white" }}
                     >
-                      <svg
-                        class="fill-current w-4 h-4 mr-2"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
-                      </svg>
-                      <span>Remove Selected Week</span>
+                      <p className="font-semibold">Remove Selected Week</p>
                     </button>
                   </div>
 
@@ -545,22 +503,25 @@ const AddClass = ({
                     </GridComponent>
                   </div>
 
-                  <div className="flex flex-row-reverse">
+                  <div className="flex flex-row-reverse mt-3 w-2/3 md:w-1/3">
                     <button
-                      type="button"
-                      class="bg-gray-200 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center mt-2"
                       onClick={() => handleStudentDeletion()}
+                      class="py-2 px-4 rounded-md flex justify-between w-full hover:shadow-md"
+                      style={{ backgroundColor: currentColor, color: "white" }}
                     >
-                      <svg
-                        class="fill-current w-4 h-4 mr-2"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
-                      </svg>
-                      <span>Remove Selected Students</span>
+                      <p className="font-semibold">Remove Selected Student</p>
                     </button>
                   </div>
+                </div>
+
+                <div className="col-start-1 text-xl mb-2 col-span-1 flex justify-evenly flex-col mt-2">
+                  <button
+                    type="submit"
+                    class="py-2 px-4 rounded-md flex justify-between w-full hover:shadow-md"
+                    style={{ backgroundColor: currentColor, color: "white" }}
+                  >
+                    <p className="font-semibold">Create Class</p>
+                  </button>
                 </div>
               </div>
             </form>
@@ -575,6 +536,7 @@ const AddClass = ({
       >
         {addSession && (
           <AddSession
+            currentColor={currentColor}
             handleSessionSubmit={handleSessionSubmit}
             setAddSession={setAddSession}
           />
@@ -584,6 +546,7 @@ const AddClass = ({
           <AddStudents
             setAddStudents={setAddStudents}
             handleStudentsSubmit={handleStudentsSubmit}
+            currentColor={currentColor}
           />
         )}
 
@@ -591,10 +554,17 @@ const AddClass = ({
           <AddTeachers
             setAddTeacher={setAddTeacher}
             handleTeacherSubmit={handleTeacherSubmit}
+            currentColor={currentColor}
           />
         )}
 
-        {addCo && <AddCo setAddCo={setAddCo} handleCoSubmit={handleCoSubmit} />}
+        {addCo && (
+          <AddCo
+            setAddCo={setAddCo}
+            handleCoSubmit={handleCoSubmit}
+            currentColor={currentColor}
+          />
+        )}
       </AnimatePresence>
     </Backdrop>
   );

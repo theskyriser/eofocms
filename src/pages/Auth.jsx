@@ -17,7 +17,7 @@ const Auth = () => {
 
   return (
     <div className="grid place-items-center h-screen bg-white">
-      <div className="border-2 border-color flex bg-main-bg justify-center p-5 drop-shadow-lg">
+      <div className="border-2 border-color flex bg-main-bg justify-center p-5 drop-shadow-lg flex-col md:flex-row">
         <div className="border-1 border-color flex rounded-xl">
           <div className="flex text-center items-center">
             <EELogo />
@@ -28,27 +28,27 @@ const Auth = () => {
           </div>
         </div>
         <form onSubmit={(e) => handleSubmit(e)}>
-          <div className="flex flex-col justify-center m-5 b p-2 items-center">
-            <div className="grid p-1 grid-cols-3 gap-2">
-              <p className="text-xl col-start-1">Email:</p>
+          <div className="flex flex-col justify-center m-5 b items-center">
+            <div className="grid p-1 grid-cols-3 gap-3">
+              <p className="text-md md:text-xl col-start-1">Email:</p>
               <input
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
                 type="text"
-                className="border-1 border-color bg-main-bg text-xl rounded-md col-span-2"
+                className="border-1 border-color bg-main-bg text-md md:text-xl rounded-md col-span-2"
               ></input>
-              <p className="text-xl col-start-1">Password:</p>
+              <p className="text-md md:text-xl col-start-1">Password:</p>
               <input
                 onChange={(e) =>
                   setFormData({ ...formData, password: e.target.value })
                 }
                 type="password"
-                className="border-1 border-color bg-main-bg text-xl rounded-md col-span-2"
+                className="border-1 border-color bg-main-bg text-md md:text-xl rounded-md col-span-2"
               ></input>
               <button
                 type="submit"
-                className="border-2 border-color w-1/2 bg-main-bg text-1xl rounded-md mt-1 col-start-2 col-span-2"
+                className="border-2 border-color w-1/2 bg-main-bg text-md md:text-xl rounded-md mt-1 col-start-2 col-span-2"
               >
                 Login
               </button>

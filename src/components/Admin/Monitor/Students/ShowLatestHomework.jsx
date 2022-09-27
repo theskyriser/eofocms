@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import Backdrop from "../../../Backdrop";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,9 +8,7 @@ import {
   getHomeworkByStudent,
   updateHomework,
 } from "../../../../redux/actions/homework";
-import { MdInfoOutline, MdOutlineCancel } from "react-icons/md";
-import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
-import { updateClass } from "../../../../redux/actions/classes";
+import { MdOutlineCancel } from "react-icons/md";
 
 const ShowLatestHomework = ({
   selectedStudent,
@@ -93,15 +91,15 @@ const ShowLatestHomework = ({
             <div className="mb-5 flex justify-between items-center">
               <h1 className="text-2xl font-bold">
                 {" "}
-                {`Homework for: ${thisStudent.firstName} ${thisStudent.lastName}`}{" "}
+                {`Homework for ${thisStudent?.firstName} ${thisStudent?.lastName}`}{" "}
               </h1>
               {latestHomework && (
                 <div>
                   <h1 className="text-2xl font-bold ml-5">
                     {" "}
                     {latestHomework?.completed === "NOT COMPLETE"
-                      ? `Due: ${latestHomework?.deadline.slice(0, 10)}`
-                      : `Completed: ${latestHomework?.completed.slice(
+                      ? `Due: ${latestHomework?.deadline?.slice(0, 10)}`
+                      : `Completed: ${latestHomework?.completed?.slice(
                           0,
                           10
                         )}`}{" "}
@@ -129,11 +127,12 @@ const ShowLatestHomework = ({
 
                 <div className="flex flex-col mb-5">
                   <h1 className="text-xl font-semibold"> Description </h1>
-
-                  <p> {latestHomework?.description} </p>
+                  <textarea className="overflow-auto h-40">
+                    {latestHomework?.description}
+                  </textarea>
                 </div>
 
-                <div className="w-full flex justify-between">
+                <div className="w-full flex justify-between md:flex-row flex-col">
                   {latestHomework?.completed === "NOT COMPLETE" ? (
                     <button
                       type="button"

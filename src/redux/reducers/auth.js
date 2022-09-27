@@ -1,4 +1,4 @@
-import {AUTH, LOGOUT, CHECKRESET, CHECKPASSWORD, UPDATE_TEACHER_CREDS} from '../const/reducerConsts'
+import {AUTH, LOGOUT, CHECKRESET, CHECKPASSWORD} from '../const/reducerConsts'
 
 const authReducer = (state = {authData: null, authLogin: false}, action) => {
     switch (action.type) {
@@ -9,8 +9,6 @@ const authReducer = (state = {authData: null, authLogin: false}, action) => {
             return {...state, authData: action?.data, authLogin: true, passwordCheck: ''}
         case CHECKPASSWORD:
             return {...state, authData: action?.data?.data, authLogin: true, passwordCheck: action?.data?.passwordCheck}
-        
-            
         case LOGOUT:
             localStorage.clear()
             return {...state, authData: null, authLogin: false};

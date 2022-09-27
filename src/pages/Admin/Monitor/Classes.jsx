@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  studentGrid2,
-  classGrid,
-  scheduleGrid,
-} from "../../../data/gridHeaders";
+import { classGrid } from "../../../data/gridHeaders";
 import AddClass from "../../../components/Admin/Monitor/Classes/AddClass";
 import { AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
@@ -19,10 +15,6 @@ import {
   Selection,
   Sort,
   ContextMenu,
-  Filter,
-  Page,
-  ExcelExport,
-  PdfExport,
   Edit,
   Inject,
   ColumnDirective,
@@ -31,7 +23,6 @@ import { getTeachers } from "../../../redux/actions/teachers";
 import { getStudents } from "../../../redux/actions/students";
 import ClassSearch from "../../../components/Admin/Monitor/Classes/ClassSearch";
 import {
-  MdOutlineGrade,
   MdOutlineQueue,
   MdOutlineLibraryBooks,
   MdOutlineWebAssetOff,
@@ -148,7 +139,7 @@ const ManageClasses = () => {
 
   return (
     <div>
-      <div className="p-4">
+      <div className="p-4 md:mt-0 mt-10">
         <div className=" bg-main-bg rounded-lg shadow-lg p-4">
           <div className="mb-5 flex justify-between">
             <h1 className="text-2xl font-extrabold"> Classes </h1>
@@ -161,9 +152,9 @@ const ManageClasses = () => {
             </button>
           </div>
 
-          <div className="grid grid-cols-7 gap-4">
-            <div className="col-span-2 bg-white rounded-lg shadow-lg p-5 flex gap-4">
-              <div className="text-lg grid grid-cols-4 gap-4 w-full bg-main-bg rounded-lg shadow-lg p-2">
+          <div className="md:grid grid-cols-7 gap-4 flex flex-col">
+            <div className="col-span-2  bg-white rounded-lg shadow-lg p-5 flex gap-4">
+              <div className=" grid grid-cols-4 gap-4 w-full bg-main-bg rounded-lg shadow-lg p-2">
                 <div
                   className="col-span-2 font-semibold text-right"
                   style={{ color: currentColor }}
@@ -175,8 +166,8 @@ const ManageClasses = () => {
                   <p> End Date </p>
                   <p> Teacher </p>
                   <p> Coordinator </p>
-                  <p> Number Of Hours </p>
-                  <p> Sessions Per Week </p>
+                  <p> Hours </p>
+                  <p> Classes/Week </p>
                 </div>
 
                 <div className="col-span-3 col-start-3 font-small text-left">
@@ -240,7 +231,7 @@ const ManageClasses = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-4 gap-8">
+          <div className="md:grid grid-cols-4 gap-8 flex flex-col">
             <div className="col-start-1 col-span-1 shadow-lg bg-white mt-5 p-4">
               <h2 className="text-xl font-semibold mb-3"> Options </h2>
               <button
@@ -316,6 +307,7 @@ const ManageClasses = () => {
             activeAddClass={activeAddClass}
             currentEdit={currentEdit}
             selectedClass={selectedClass}
+            currentColor={currentColor}
           />
         )}
 

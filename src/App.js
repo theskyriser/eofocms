@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import React from 'react'
+import {Routes, Route, Navigate, HashRouter } from 'react-router-dom'
 
 import { useSelector } from 'react-redux/es/exports'
 import { useDispatch } from 'react-redux'
@@ -12,32 +12,27 @@ import TeacherRoute from './TeacherRoute'
 
 
 const App = () => {
-
-  const dispatch = useDispatch()
   const currentMode = useSelector(state => state.appState.currentMode)
-  const currentColor = useSelector(state => state.appState.currentColor)
-  const themeSettings = useSelector(state => state.appState.themeSettings)
-  const activeMenu = useSelector(state => state.appState.activeMenu)
-  const authLogin = useSelector(state => state.authReducer.authLogin)
+
 
   const user = JSON.parse(localStorage.getItem("profile"))
 
+
   return (
     <div className={currentMode === 'Dark' ? 'dark' : ''}>
-      <BrowserRouter>
-      
+      <HashRouter>
           <Routes>
             <Route path="/auth" element={
               !user ? <Auth/>  
               : user?.result?.accountType === 'ADMIN' ? <Navigate to="/admin/adminprofile"/> :
               user?.result?.accountType === 'TEACHER' ? <Navigate to ="/teacher/teacherprofile"/> :
-            <Navigate to="/auth"/>}/>
-            <Route path= "/" element={<Navigate to="/auth" />}/>
+            <Navigate to="/"/>}/>
             <Route path= "/admin/*" element={user ? <AdminRoute/> : <Navigate to="/auth/"/>} />
             <Route path= "/teacher/*" element={user ? <TeacherRoute/> : <Navigate to="/auth/"/>} />
+            <Route path= "/" element={<Navigate to="/auth" />}/>
           </Routes>
         
-    </BrowserRouter> 
+    </HashRouter> 
   </div>
   )
 }

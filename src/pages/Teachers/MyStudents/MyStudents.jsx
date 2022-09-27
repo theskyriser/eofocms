@@ -5,10 +5,6 @@ import {
   Selection,
   Sort,
   ContextMenu,
-  Filter,
-  Page,
-  ExcelExport,
-  PdfExport,
   Edit,
   Inject,
   ColumnDirective,
@@ -19,11 +15,9 @@ import { studentGrid } from "../../../data/gridHeaders";
 import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import ChangeCredentials from "../../../components/Auth/ChangeCredentials";
 import {
   getStudentsByTeacher,
   getStudents,
-  deleteStudent,
 } from "../../../redux/actions/students";
 import StudentGrades from "../../../components/Admin/Monitor/Students/StudentGrades";
 
@@ -105,23 +99,21 @@ const MyStudents = () => {
 
   return (
     <div>
-      <div className="p-4">
+      <div className="p-4 md:mt-0 mt-10 overflow-auto">
         <div className=" bg-main-bg rounded-lg shadow-lg p-4">
           <div className="mb-5">
             <h1 className="text-2xl font-extrabold"> Students </h1>
-
-            <h2> Set grades, View Info, Set Homework?</h2>
           </div>
 
-          <div className="grid grid-cols-7 gap-4">
-            <div className="col-span-3 bg-white rounded-lg shadow-lg p-5 flex gap-4">
+          <div className="md:grid grid-cols-7 gap-4 flex flex-col">
+            <div className="col-span-3 bg-white rounded-lg shadow-lg p-5 flex gap-4 md:flex-row flex-col items-center">
               <div className="text-center flex flex-col justify-between">
                 <div>
                   <img src={profile} width={200} />
                 </div>
               </div>
 
-              <div className="text-lg grid grid-cols-4 gap-4 w-full bg-main-bg rounded-lg shadow-lg p-2">
+              <div className="text-md grid grid-cols-4 gap-4 w-full bg-main-bg rounded-lg shadow-lg p-2">
                 <div
                   className="col-span-2 font-semibold text-right"
                   style={{ color: currentColor }}
@@ -130,7 +122,7 @@ const MyStudents = () => {
                   <p> Level </p>
                   <p> Email </p>
                   <p> Phone </p>
-                  <p> Native Language </p>
+                  <p> Native </p>
                   <p> Address </p>
                   <p> State </p>
                   <p> Post Code </p>
@@ -193,7 +185,7 @@ const MyStudents = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-11 gap-8 mt-5">
+          <div className="md:grid grid-cols-11 gap-8 mt-5 flex flex-col">
             <div
               className="shadow-sm bg-blue-400 p-8 rounded-sm col-start-2 col-span-3 hover:shadow-lg hover:bg-blue-400 cursor-pointer"
               onClick={() => handleActiveExpand()}

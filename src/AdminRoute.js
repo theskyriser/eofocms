@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import { BrowserRouter, Routes, Route, useNavigate, Navigate } from 'react-router-dom'
+import {Routes, Route, useNavigate } from 'react-router-dom'
 import { FiSettings } from 'react-icons/fi'
 import { TooltipComponent } from '@syncfusion/ej2-react-popups'
 import { useSelector } from 'react-redux/es/exports'
 import { useDispatch } from 'react-redux'
-import {Navbar, Footer, ThemeSettings} from './components'
+import {Navbar, ThemeSettings} from './components'
 import SidebarAdmin from './components/SidebarAdmin'
 
 
@@ -72,7 +72,7 @@ const AdminRoute = () => {
     <div className={ 
       `dark:bg-main-dark-bg bg-main-bg min-h-screen w-full ${activeMenu 
       ? "md:ml-72" : "flex-2"}`}>
-      <div className='fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full'>
+      <div className='fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full '>
         <Navbar user={user} setUser={setUser}/>
       </div>
     <div>

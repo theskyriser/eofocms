@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Backdrop from "../../../Backdrop";
 import { useDispatch, useSelector } from "react-redux";
 import { createHomework } from "../../../../redux/actions/homework";
-import { MdInfoOutline, MdOutlineCancel } from "react-icons/md";
+import { MdOutlineCancel } from "react-icons/md";
 import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
 
 const AddHomework = ({
@@ -104,7 +104,7 @@ const AddHomework = ({
                   }
                   style={{ backgroundColor: currentColor + "40" }}
                   rows="4"
-                  class="mt-1 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  class="mt-1 block p-2.5 w-full text-sm overflow-auto text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Add excellence..."
                 ></textarea>
               </div>

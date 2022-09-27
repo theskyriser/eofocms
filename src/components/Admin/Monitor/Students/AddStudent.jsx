@@ -126,7 +126,7 @@ const AddStudent = ({
             </div>
 
             <form onSubmit={(e) => handleSubmit(e)}>
-              <div className="grid grid-cols-4 gap-3 font-semibold">
+              <div className="md:grid grid-cols-4 gap-3 flex flex-col">
                 <div className="col-span-2">
                   <label htmlFor="firstName"> First Name </label>
                   <input
@@ -301,7 +301,7 @@ const AddStudent = ({
                 </div>
 
                 <div className=" col-start-1 col-span-1">
-                  <label> UPLOAD IMAGE SOMEHOW FUCK </label>
+                  <label> Upload Image </label>
                   <input
                     type="file"
                     onChange={(e) => uploadImage(e.target.files[0])}

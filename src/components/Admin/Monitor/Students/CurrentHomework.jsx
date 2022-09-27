@@ -43,7 +43,10 @@ const CurrentHomework = ({
       </div>
 
       <div className="text-lg font-medium">
-        <h1 className="mb-4"> Description: {homework?.description}</h1>
+        <h1> Description: </h1>
+        <textarea className="overflow-auto w-full">
+          {homework?.description}
+        </textarea>
       </div>
 
       <div>

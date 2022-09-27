@@ -62,8 +62,8 @@ const TeacherDetails = ({ currentColor, teacherId }) => {
   };
 
   return (
-    <div className="shadow-md bg-slate-50 w-2/3 p-5">
-      <h2 className="text-2xl"> Account </h2>
+    <div className="shadow-md bg-slate-50 w-full md:w-2/3 p-5 text-sm md:text-md">
+      <h2 className="text-xl"> Account </h2>
 
       <form autoComplete="off">
         <div className="flex justify-between mt-5 items-center">
@@ -75,7 +75,7 @@ const TeacherDetails = ({ currentColor, teacherId }) => {
             onChange={(e) => {
               setTeacherData({ ...teacherData, firstName: e.target.value });
             }}
-            className="appearance-none block w-2/3 bg-gray-50 text-gray-700 border border-gray-400 rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            className=" appearance-none block w-2/3 bg-gray-50 text-gray-700 border border-gray-400 rounded py-1 px-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           />
         </div>
 

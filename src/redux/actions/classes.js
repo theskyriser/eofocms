@@ -27,9 +27,10 @@ export const getClassesBySearch = (url) => async (dispatch) => {
 
 export const createClass = (classes) => async (dispatch) => {
     try {
-        console.log('at action')
+        
         const {data} = await api.createClass(classes)
-        dispatch({type: CREATE_CLASS, payload: data})
+        console.log(data)
+       dispatch({type: CREATE_CLASS, payload: data})
     }
     catch (error) {
         console.log(error)

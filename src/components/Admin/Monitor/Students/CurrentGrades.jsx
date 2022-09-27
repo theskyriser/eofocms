@@ -15,7 +15,7 @@ const CurrentGrades = ({ selectedGrade, latestGradeId, setSelectedGrade }) => {
   }, [selectedGrade]);
 
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <div className="md:grid grid-cols-4 gap-4 flex flex-col">
       <div className="col-span-1 mb-3">
         <h1 className="text-3xl font-semibold"> Current Grades </h1>
       </div>

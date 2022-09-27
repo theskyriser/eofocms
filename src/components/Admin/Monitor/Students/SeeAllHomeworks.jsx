@@ -3,14 +3,11 @@ import { motion } from "framer-motion";
 import Backdrop from "../../../Backdrop";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  createHomework,
   deleteHomework,
-  getHomework,
   getHomeworkByStudent,
   updateHomework,
 } from "../../../../redux/actions/homework";
-import { MdInfoOutline, MdOutlineCancel } from "react-icons/md";
-import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
+import { MdOutlineCancel } from "react-icons/md";
 import HomeworkCard from "./HomeworkCard";
 import CurrentHomework from "./CurrentHomework";
 
